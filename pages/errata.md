@@ -2,6 +2,8 @@
 title: Learning Concurrent Programming in Scala
 ---
 
+# Book Errata
+
 ## Chapter 3
 
 ### CAS pseudocode
