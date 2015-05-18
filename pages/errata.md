@@ -44,3 +44,29 @@ Similarly, the reference-based CAS should be (note `ne` instead of `eq`):
       }
 
 *Thanks [Normen Müller](https://github.com/normenmueller)!*
+
+
+### Atomic buffers
+
+On page 84, the `AtomicBuffer` example is as follows:
+
+    class AtomicBuffer[T] {
+      private val buffer = new AtomicReference[List[T]](Nil)
+      @tailrec def +=(x: T): Unit = {
+        val xs = buffer.get
+        val nxs = x :: xs
+        if (!buffer.compareAndSet(xs, nxs)) this += x
+      }
+    }
+
+The method `+=` is tail recursive, so it should be either final or private.
+Since we want to expose `+=` to the clients, we need to mark it with `final`, as follows:
+
+    @tailrec final def +=(x: T): Unit = {
+      val xs = buffer.get
+      val nxs = x :: xs
+      if (!buffer.compareAndSet(xs, nxs)) this += x
+    }
+
+*Thanks [Normen Müller](https://github.com/normenmueller)!*
+
