@@ -95,7 +95,9 @@ properly initializing the `total` value in its `apply` method.
       }
     }
 
-The `apply` method should instead initialize the local variable `total` with `z` instead of `0L`.
+The current implementation of `apply` ignores the `z` constructor argument for neutral accumulator elements,
+and only works correctly if `op` is, for example, addition.
+The `apply` method should initialize the local variable `total` with `z` instead of `0L`.
 
       def apply(): Long = {
         var total = z
