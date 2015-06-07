@@ -70,3 +70,37 @@ Since we want to expose `+=` to the clients, we need to mark it with `final`, as
 
 *Thanks [Normen Müller](https://github.com/normenmueller)!*
 
+
+## Chapter 9
+
+### Scalable Concurrent Accumulator
+
+On page 331, the scalable concurrent accumulator specialized for `Long`s is not
+properly initializing the `total` value in its `apply` method.
+
+    class ParLongAccumulator(z: Long)(op: (Long, Long) => Long) {
+      private val par = Runtime.getRuntime.availableProcessors * 128
+      private val values = new AtomicLongArray(par)
+      @tailrec final def add(v: Long): Unit = {
+        val id = Thread.currentThread.getId.toInt
+        val i = math.abs(scala.util.hashing.byteswap32(id)) % par
+        val ov = values.get(i)
+        val nv = op(ov, v)
+        if (!values.compareAndSet(i, ov, nv)) add(v)
+      }
+      def apply(): Long = {
+        var total = 0L
+        for (i <- 0 until values.length) total = op(total, values.get(i))
+        total
+      }
+    }
+
+The `apply` method should instead initialize the local variable `total` with `z` instead of `0L`.
+
+      def apply(): Long = {
+        var total = z
+        for (i <- 0 until values.length) total = op(total, values.get(i))
+        total
+      }
+
+*Thanks [Yuki N.](https://github.com/fairjm)!*
