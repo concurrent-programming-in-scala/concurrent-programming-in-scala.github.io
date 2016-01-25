@@ -45,6 +45,8 @@ Similarly, the reference-based CAS should be (note `ne` instead of `eq`):
 
 *Thanks [Normen Müller](https://github.com/normenmueller)!*
 
+### ABA problem
+
 On page 78:
 
 > In the preceding example, the ABA problem manifests itself in the
@@ -56,6 +58,8 @@ On page 78:
 
 Instead of *between these two writes*,
 it should read *between these two accesses*.
+
+*Thanks anonymous reader!*
 
 
 ### Atomic buffers
