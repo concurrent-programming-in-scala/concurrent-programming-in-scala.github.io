@@ -4,6 +4,25 @@ title: Learning Concurrent Programming in Scala
 
 # Book Errata
 
+## Chapter 2
+
+### Volatile variables
+
+On page 54:
+
+> This means that the main thread always sees the write
+> of the thread that `found` set and hence prints at least
+> one position other than `-1`.
+
+The words `found` and *set* should be inverted,
+and there is a missing comma:
+
+> This means that the main thread always sees the write
+> of the thread that set `found`, and hence prints at least
+> one position other than `-1`.
+
+*Thanks anonymous reader!*
+
 ## Chapter 3
 
 ### CAS pseudocode
