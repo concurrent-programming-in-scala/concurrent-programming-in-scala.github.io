@@ -45,6 +45,18 @@ Similarly, the reference-based CAS should be (note `ne` instead of `eq`):
 
 *Thanks [Normen Müller](https://github.com/normenmueller)!*
 
+On page 78:
+
+> In the preceding example, the ABA problem manifests itself in the
+> execution of the thread T2. Having first read the value of the state
+> field in the Entry object with the `get` method and with the `compareAndSet`
+> method later, thread T2 assumes that the value of the state field
+> has not changed between these two writes. In this case, this leads
+> to a program error.
+
+Instead of *between these two writes*,
+it should read *between these two accesses*.
+
 
 ### Atomic buffers
 
