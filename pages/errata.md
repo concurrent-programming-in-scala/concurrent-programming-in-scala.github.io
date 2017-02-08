@@ -2,7 +2,7 @@
 title: Learning Concurrent Programming in Scala
 ---
 
-# Book Errata
+# Book Errata (1st Edition)
 
 ## Chapter 2
 
