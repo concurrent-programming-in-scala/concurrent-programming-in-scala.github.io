@@ -4,6 +4,8 @@ title: Learning Concurrent Programming in Scala
 
 # Learning Concurrent Programming in Scala
 
+Now, in 2nd edition!
+
 - [2nd Edition Amazon Link](https://www.amazon.com/Learning-Concurrent-Programming-Scala-Second/dp/1786466899/)
 - [Packt Link](https://www.packtpub.com/application-development/learning-concurrent-programming-scala)
 - [Code Examples](https://github.com/concurrent-programming-in-scala/learning-examples)
